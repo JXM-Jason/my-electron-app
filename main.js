@@ -1,14 +1,15 @@
 /*
- * @Description: 
+ * @Description: 主进程
  * @Author: medicom.JiaXianMeng
  * @Date: 2024-08-26 16:52:51
  * @LastEditors: medicom.JiaXianMeng
- * @LastEditTime: 2024-08-27 15:47:24
+ * @LastEditTime: 2024-08-28 14:53:47
  * @FilePath: \my-electron-app\main.js
  */
-console.log('Hello from my Electron !!!')
 const { app, BrowserWindow, ipcMain } = require('electron')
 const path = require('node:path')
+const registerAppMenu = require('./menus');
+const isMac = process.platform === 'darwin'
 
 const createWindow = () => {
 	const win = new BrowserWindow({
@@ -19,12 +20,13 @@ const createWindow = () => {
 		}
 	})
 
-	// win.loadFile('index.html')
-	win.loadURL('https://www.baidu.com')
+	win.loadFile('index.html')
+	// win.webContents.openDevTools()
+	// win.loadURL('https://www.baidu.com')
 }
 
 app.whenReady().then(() => {
-	ipcMain.handle('ping', () => 'pong')
+	ipcMain.handle('pingFun', () => 'pong')
 	createWindow()
 	app.on('activate', () => {
 		if (BrowserWindow.getAllWindows().length === 0) createWindow()
@@ -32,9 +34,14 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', () => {
-	if (process.platform !== 'darwin') app.quit()
+	if (!isMac) app.quit()
 })
 
 try {
 	require('electron-reloader')(module, {});
 } catch (_) { }
+
+registerAppMenu()
+
+
+

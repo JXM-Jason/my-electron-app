@@ -1,12 +1,11 @@
 /*
  * @Description: 
  * @Author: medicom.JiaXianMeng
- * @Date: 2024-08-26 17:16:32
+ * @Date: 2024-09-01 10:52:09
  * @LastEditors: medicom.JiaXianMeng
- * @LastEditTime: 2024-08-30 17:37:31
+ * @LastEditTime: 2024-09-01 11:11:43
  * @FilePath: \my-electron-app\preload.js
  */
-
 // 写法一
 // window.addEventListener('DOMContentLoaded', () => {
 // 	const replaceText = (selector, text) => {
@@ -26,7 +25,8 @@ contextBridge.exposeInMainWorld('versions', {
 	node: () => process.versions.node,
 	chrome: () => process.versions.chrome,
 	electron: () => process.versions.electron,
-	ping: () => ipcRenderer.invoke('pingFun')
+	ping: () => ipcRenderer.invoke('pingFun'),
+	msg: () => ipcRenderer.postMessage('haveMessage', '我是jxm')
 	// 除函数之外，我们也可以暴露变量
 
 })

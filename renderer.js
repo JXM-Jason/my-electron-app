@@ -3,7 +3,7 @@
  * @Author: medicom.JiaXianMeng
  * @Date: 2024-08-27 10:45:01
  * @LastEditors: medicom.JiaXianMeng
- * @LastEditTime: 2024-08-30 17:40:10
+ * @LastEditTime: 2024-09-01 11:13:00
  * @FilePath: \my-electron-app\renderer.js
  */
 let pingVal
@@ -19,6 +19,8 @@ const func = async () => {
 
 document.getElementById('btn').addEventListener('click', () => {
 	console.log('this---', this);
+	let msg = window.versions.msg()
+	console.log('msg----', msg);
 	// this.$electron.ipcRenderer.send('haveMessage')
 	console.log('click')
 })

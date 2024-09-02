@@ -1,9 +1,9 @@
 /*
- * @Description: 
+ * @Description: 预加载脚本
  * @Author: medicom.JiaXianMeng
  * @Date: 2024-09-01 10:52:09
  * @LastEditors: medicom.JiaXianMeng
- * @LastEditTime: 2024-09-01 11:11:43
+ * @LastEditTime: 2024-09-02 10:51:43
  * @FilePath: \my-electron-app\preload.js
  */
 // 写法一
@@ -26,7 +26,8 @@ contextBridge.exposeInMainWorld('versions', {
 	chrome: () => process.versions.chrome,
 	electron: () => process.versions.electron,
 	ping: () => ipcRenderer.invoke('pingFun'),
-	msg: () => ipcRenderer.postMessage('haveMessage', '我是jxm')
+	// msg: () => ipcRenderer.invoke('haveMessage',)
+	msg: () => ipcRenderer.send('haveMessage', 'hello！！！')
 	// 除函数之外，我们也可以暴露变量
 
 })

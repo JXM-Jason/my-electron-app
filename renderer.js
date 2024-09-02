@@ -1,11 +1,12 @@
 /*
- * @Description: 
+ * @Description: 渲染进程
  * @Author: medicom.JiaXianMeng
  * @Date: 2024-08-27 10:45:01
  * @LastEditors: medicom.JiaXianMeng
- * @LastEditTime: 2024-09-01 11:13:00
+ * @LastEditTime: 2024-09-02 10:53:07
  * @FilePath: \my-electron-app\renderer.js
  */
+
 let pingVal
 const func = async () => {
 	const response = await window.versions.ping()
@@ -17,12 +18,11 @@ const func = async () => {
   Electron (v${versions.electron()})----pingVal----:${pingVal}`
 }
 
+// 调用该函数
 document.getElementById('btn').addEventListener('click', () => {
 	console.log('this---', this);
-	let msg = window.versions.msg()
-	console.log('msg----', msg);
-	// this.$electron.ipcRenderer.send('haveMessage')
-	console.log('click')
+	let msg = window.versions.msg();
+	console.log('msg---', msg);
 })
 
 func()
